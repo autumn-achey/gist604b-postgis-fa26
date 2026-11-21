@@ -50,6 +50,12 @@ WHERE boroname = 'Manhattan';
 
 -- TODO: Write your query below
 
+SELECT
+    boroname,
+    (SUM(popn_black) * 100.0 / SUM(popn_total)) AS percentage_black
+FROM nyc_census_blocks
+GROUP BY boroname
+ORDER BY boroname;
 
 
 
@@ -69,3 +75,10 @@ WHERE boroname = 'Manhattan';
 -- Hint: Use ORDER BY avg_population DESC for readability
 
 -- TODO: Write your query below
+
+SELECT
+    boroname,
+    AVG(popn_total) AS avg_population
+FROM nyc_census_blocks
+GROUP BY boroname
+ORDER BY avg_population DESC;
