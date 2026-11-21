@@ -11,6 +11,9 @@
 
 -- TODO: Write your query below
 
+SELECT SUM(popn_asian) AS asian_pop
+FROM nyc_census_blocks;
+
 
 
 -- Exercise 2: What is the population of Manhattan?
@@ -25,7 +28,9 @@
 
 -- TODO: Write your query below
 
-
+SELECT SUM(popn_total) AS manhattan_pop
+FROM nyc_census_blocks
+WHERE boroname = 'Manhattan';
 
 -- Exercise 3: For each borough, what percentage of the population is black?
 -- Expected output: one row per borough with borough name and black population percentage
