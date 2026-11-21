@@ -84,7 +84,9 @@ FROM nyc_streets;
 
 -- TODO: Write your query below
 
-
+SELECT SUM(ST_Length(geom)) AS fifth_ave_length
+FROM nyc_streets
+WHERE name = '5th Ave';
 
 
 -- Exercise 6: What is the JSON representation of the boundary of 'Soho'?
@@ -99,7 +101,9 @@ FROM nyc_streets;
 
 -- TODO: Write your query below
 
-
+SELECT ST_AsGeoJSON(geom) AS soho_geojson
+FROM nyc_neighborhoods
+WHERE name = 'Soho';
 
 
 -- Exercise 7: How many polygons are in the 'Coney Island' multipolygon?
@@ -113,7 +117,9 @@ FROM nyc_streets;
 -- Hint: Use the nyc_neighborhoods table
 -- Hint: Filter rows where name = 'Coney Island'
 
-
+SELECT ST_NumGeometries(geom) AS num_coney_island_polygons
+FROM nyc_neighborhoods
+WHERE name = 'Coney Island';
 
 -- Exercise 8: What are the 5 longest roads in NYC?
 -- Expected output: five rows with road names and lengths in meters
@@ -131,5 +137,10 @@ FROM nyc_streets;
 -- Hint: ORDER BY ST_Length(geom) DESC OR use the alias length_meters
 -- Hint: Use LIMIT 5
 
-
+SELECT
+    name,
+    ST_Length(geom) AS length_meters
+    FROM nyc_streets
+    ORDER BY length_meters DESC
+    LIMIT 5;
 
