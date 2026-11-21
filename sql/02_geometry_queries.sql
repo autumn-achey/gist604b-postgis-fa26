@@ -13,7 +13,9 @@
 
 -- TODO: Write your query below
 
-
+SELECT ST_Area(geom) AS new_brighton_area_sq_m
+FROM nyc_neighborhoods
+WHERE name = 'New Brighton';
 
 
 -- Exercise 2: What is the area of the Bronx in acres?
@@ -29,7 +31,9 @@
 
 -- TODO: Write your query below
 
-
+SELECT ST_Area(ST_Union(geom)) / 4046.86 AS bronx_area_acres
+FROM nyc_neighborhoods
+WHERE boroname = 'The Bronx';
 
 
 -- Exercise 3: How many census blocks in New York City DO NOT have a hole in them?
@@ -45,7 +49,9 @@
 
 -- TODO: Write your query below
 
-
+SELECT COUNT(*) AS no_hole_polygons
+FROM nyc_census_blocks
+WHERE ST_NumInteriorRings(geom) = 0;
 
 
 -- Exercise 4: What is the total length of streets (in miles) in New York City?
@@ -61,7 +67,8 @@
 
 -- TODO: Write your query below
 
-
+SELECT SUM(ST_Length(geom)) / 1609.34 AS total_length_miles
+FROM nyc_streets;
 
 
 -- Exercise 5: How long is '5th Ave' in meters?
